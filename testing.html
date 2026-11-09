@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style> body{
+        background-color: #5B0202;}
+    .searchbar {
+            border-radius: 40px;
+            width: 350px;
+            height: 50px;
+    }
+    .searching {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 100px;
+    }
+    .logo {
+       font-family: "Jost", "Josefin Sans", sans-serif;
+  font-weight: lighter;
+  font-size: 50px;
+  letter-spacing: 1px;
+  color:#EDE7C7;
+  text-transform: uppercase;
+  align-items: center;
+  justify-content: center;
+  display:flex;
+  
+    }
+    .mark {
+  position: relative;
+  display: inline-block;}
+  .mark::before {
+  content: "";
+  position: absolute;
+  top: -0.35em;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0.6em;
+  height: 1px;
+  background: currentColor;
+}
+    </style>
+</head>
+<body>
+    <div class="logo">
+        <span class="mark">I</span>NT M&Lambda;P
+    </div>
+    <div class="searching">
+        <input type="text" class="searchbar"
+        placeholder="Search in IntMap">
+    </div>
+</body>
+</html>
