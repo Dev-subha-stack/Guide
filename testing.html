@@ -2,33 +2,55 @@
 <html>
 <head>
     <style> body{
-        background-color: #5B0202;}
-    .searchbar {
-            border-radius: 40px;
-            width: 350px;
-            height: 50px;
+        background-color: #5B0202;
+        margin: 0;
+        padding-bottom: 1000px;
     }
-    .searching {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin-top: 100px;
-    }
-    .logo {
-       font-family: "Jost", "Josefin Sans", sans-serif;
-  font-weight: lighter;
-  font-size: 50px;
-  letter-spacing: 1px;
-  color:#EDE7C7;
-  text-transform: uppercase;
-  align-items: center;
-  justify-content: center;
-  display:flex;
-  
-    }
-    .mark {
-  position: relative;
-  display: inline-block;}
+.searchbar 
+{
+    border-radius: 40px;
+    width: 450px;
+    height: 60px;
+    padding-left: 20px;
+    font-size: 18px;
+    font-family: 'Inter' , sans-serif;
+    background:
+    radial-gradient(circle at 20% 30%, #EDE7C7 0, transparent 40%),
+    radial-gradient(circle at 80% 70%, #c2bea9 0, transparent 40%),
+    #b5b198;
+    border: none;
+}
+
+.searchbar:focus
+{
+    outline: none;
+    box-shadow: 6px 3px 5px rgba(0, 0, 0, 0.3);
+}
+
+.searching {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 200px;
+}
+
+.header{
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    background-color: #77735e;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 2;
+}
+
+.mark {
+    position: relative;
+    display: inline-block;
+}
+
   .mark::before {
   content: "";
   position: absolute;
@@ -39,15 +61,79 @@
   height: 1px;
   background: currentColor;
 }
+
+.logo-pic
+{
+    margin-left:0
+}
+
+.logo-text 
+{
+    font-family: "Jost", "Josefin Sans", sans-serif;
+    font-weight: lighter;
+    font-size: 50px;
+    letter-spacing: 1px;
+    color:#EDE7C7;
+    text-transform: uppercase;
+
+
+
+}
+
+.z
+{
+    margin-top: 0;
+    width: 100px;
+    height: 100px;
+}
+
+.menu-text
+{
+    display: inline-block;
+}
+
+.menu-button
+{
+    display: flex;
+    justify-content: end;
+}
+
+
+.hamburger
+{
+    background-color: transparent;
+    border: none;
+}
+
     </style>
 </head>
 <body>
-    <div class="logo">
-        <span class="mark">I</span>NT M&Lambda;P
+    <div class="header">
+
+
+        <div class="logo-pic">
+            <img class="z" src="logo/logo-removebg-preview.png">
+        </div>
+
+
+        <div class="logo-text">
+            INT M&Lambda;P
+        </div>
+
+
+
+        <div class="menu-button">
+            <button class="hamburger"><img src="logo/Hamburger_icon.svg"></button>
+        </div>
+
+
     </div>
+
     <div class="searching">
         <input type="text" class="searchbar"
         placeholder="Search in IntMap">
     </div>
+
+
 </body>
 </html>
