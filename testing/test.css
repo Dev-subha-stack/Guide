@@ -1,11 +1,9 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <style> body{
-        background-color: #5B0202;
-        margin: 0;
-        padding-bottom: 1000px;
-    }
+body
+{
+    background-color: #5B0202;
+    margin: 0;
+    padding-bottom: 1000px;
+}
 .searchbar 
 {
     border-radius: 40px;
@@ -27,14 +25,16 @@
     box-shadow: 6px 3px 5px rgba(0, 0, 0, 0.3);
 }
 
-.searching {
+.searching 
+{
     display: flex;
     align-items: center;
     justify-content: center;
     margin-top: 200px;
 }
 
-.header{
+.header
+{
     display: grid;
     grid-template-columns: 1fr auto 1fr;
     align-items: center;
@@ -46,12 +46,14 @@
     z-index: 2;
 }
 
-.mark {
+.mark 
+{
     position: relative;
     display: inline-block;
 }
 
-  .mark::before {
+.mark::before 
+{
   content: "";
   position: absolute;
   top: -0.35em;
@@ -75,9 +77,6 @@
     letter-spacing: 1px;
     color:#EDE7C7;
     text-transform: uppercase;
-
-
-
 }
 
 .z
@@ -103,37 +102,30 @@
 {
     background-color: transparent;
     border: none;
+    transition: 0.5s;
 }
 
-    </style>
-</head>
-<body>
-    <div class="header">
+.hamburger:hover
+{
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
+}
+
+.hamburger:active
+{
+    box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.3);
+}
+
+.tagline
+{
+    margin-top: 500px;
+    margin-left: 20px;
+}
+
+.tagtext
+{
+    font-family: Lyon Display Web,Times New Roman,serif;
+    font-size: 40px;
+    color: #E6E6FA;
+}
 
 
-        <div class="logo-pic">
-            <img class="z" src="logo/logo-removebg-preview.png">
-        </div>
-
-
-        <div class="logo-text">
-            INT M&Lambda;P
-        </div>
-
-
-
-        <div class="menu-button">
-            <button class="hamburger"><img src="logo/Hamburger_icon.svg"></button>
-        </div>
-
-
-    </div>
-
-    <div class="searching">
-        <input type="text" class="searchbar"
-        placeholder="Search in IntMap">
-    </div>
-
-
-</body>
-</html>
