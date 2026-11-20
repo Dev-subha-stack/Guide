@@ -131,3 +131,42 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outlin
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; }
 }
+  
+.mission-section {
+  width: min(1120px, calc(100% - 48px));
+  margin: 0 auto;
+  padding: 78px 0 82px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(36px, 8vw, 105px);
+  border-bottom: 1px solid var(--border);
+}
+.mission-heading h2 {
+  margin: 24px 0 0;
+  font: 500 clamp(30px, 4vw, 45px)/1.18 Georgia, "Times New Roman", serif;
+  letter-spacing: -.025em;
+}
+.mission-heading h2 em { color: var(--text-secondary); font-style: normal; }
+.mission-copy {
+  color: var(--text-secondary);
+  font-size: 14px;
+  line-height: 1.9;
+}
+.mission-copy p { margin: 0 0 17px; }
+.mission-motto {
+  margin-top: 25px !important;
+  padding-top: 19px;
+  border-top: 1px solid var(--border-strong);
+  color: var(--text);
+  font: 500 clamp(20px, 2.5vw, 27px)/1.35 Georgia, "Times New Roman", serif;
+}
+.mission-motto strong { color: var(--accent); font-weight: 600; }
+@media (max-width: 760px) {
+  .mission-section {
+    width: calc(100% - 40px);
+    padding: 58px 0 62px;
+    grid-template-columns: 1fr;
+    gap: 25px;
+  }
+  .mission-heading h2 { font-size: 34px; }
+}
