@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#0C0E12">
-  <meta name="description" content="INT MΛP brings useful learning resources together and gives you a place to start.">
-  <title>INT MΛP — A place to start</title>
+  <meta name="description" content="Find a complete learning roadmap for the topic you love, with free and open-source resources. Learning should be fun and free.">
+  <title>INT MΛP — Learning should be fun and free</title>
   <link rel="icon" href="logo/favicon.png" type="image/png">
   <style>
 :root {
@@ -141,7 +141,46 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outlin
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; }
 }
-  </style>
+  
+.mission-section {
+  width: min(1120px, calc(100% - 48px));
+  margin: 0 auto;
+  padding: 78px 0 82px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(36px, 8vw, 105px);
+  border-bottom: 1px solid var(--border);
+}
+.mission-heading h2 {
+  margin: 24px 0 0;
+  font: 500 clamp(30px, 4vw, 45px)/1.18 Georgia, "Times New Roman", serif;
+  letter-spacing: -.025em;
+}
+.mission-heading h2 em { color: var(--text-secondary); font-style: normal; }
+.mission-copy {
+  color: var(--text-secondary);
+  font-size: 14px;
+  line-height: 1.9;
+}
+.mission-copy p { margin: 0 0 17px; }
+.mission-motto {
+  margin-top: 25px !important;
+  padding-top: 19px;
+  border-top: 1px solid var(--border-strong);
+  color: var(--text);
+  font: 500 clamp(20px, 2.5vw, 27px)/1.35 Georgia, "Times New Roman", serif;
+}
+.mission-motto strong { color: var(--accent); font-weight: 600; }
+@media (max-width: 760px) {
+  .mission-section {
+    width: calc(100% - 40px);
+    padding: 58px 0 62px;
+    grid-template-columns: 1fr;
+    gap: 25px;
+  }
+  .mission-heading h2 { font-size: 34px; }
+}
+</style>
 </head>
 <body>
   <header class="topbar">
@@ -175,28 +214,41 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outlin
   <main id="home">
     <section class="hero" id="search-section">
       <div class="hero-copy">
-        <p class="kicker">A small project for curious learners</p>
-        <h1>A better place<br>to <em>start learning.</em></h1>
-        <p class="hero-description">The internet is full of useful lessons. Finding the right ones can take ages. We’re trying to bring good resources together, so getting started feels a little easier.</p>
+        <p class="kicker">A better way to find your way into a subject</p>
+        <h1>Everything you need<br>to <em>learn something new.</em></h1>
+        <p class="hero-description">The internet has lessons on almost everything. The hard part is finding them all. INT MΛP brings useful learning resources together and gives you a clear path from curious beginner to confident learner.</p>
       </div>
 
       <div class="search-area">
-        <label class="search-label" for="topic-search">What are you curious about?</label>
+        <label class="search-label" for="topic-search">What do you want to learn?</label>
         <form class="searching" role="search" action="#" onsubmit="return false">
           <input id="topic-search" type="search" class="searchbar" aria-label="Search learning resources" placeholder="Try vectors, matrices, or history">
           <button class="search-button" type="submit" aria-label="Search">→</button>
         </form>
-        <p class="search-help"><strong>Some ideas:</strong> Vectors · Mathematical induction · Ionic equilibrium</p>
+        <p class="search-help"><strong>Try searching for:</strong> Vectors · Web development · Astronomy</p>
+      </div>
+    </section>
+
+
+    <section class="mission-section" aria-labelledby="mission-title">
+      <div class="mission-heading">
+        <span class="section-label">Why INT MΛP exists</span>
+        <h2 id="mission-title">The internet has the answers.<br><em>We’re bringing the paths together.</em></h2>
+      </div>
+      <div class="mission-copy">
+        <p>You can learn almost anything online. There are brilliant tutorials, courses, videos, books and communities all over the internet. But they’re scattered across different websites, and figuring out where to begin can be overwhelming.</p>
+        <p>That’s why we’re building INT MΛP. Search for a topic and find a complete roadmap to help you master it, with useful sources gathered in one place. Our goal is to make those resources free to access and open source wherever possible, so learning doesn’t depend on how much money you have.</p>
+        <p class="mission-motto">Learning should be <strong>FUN</strong> and <strong>FREE.</strong></p>
       </div>
     </section>
 
     <section class="about-section" id="about-section">
       <div class="section-label">A little about us</div>
       <div class="about-content">
-        <h2>We started this because finding a good starting point shouldn’t be the hardest part.</h2>
+        <h2>Less time hunting for resources. More time actually learning.</h2>
         <div class="about-copy">
-          <p>Hey, this is us. INT MΛP is a hobby project by two people who wanted to make learning resources easier to find. Instead of searching through page after page, we want you to have a clearer path to follow.</p>
-          <p>For now, we’re organising the resources ourselves. Later on, we’d love to make this something the community can help build.</p>
+          <p>INT MΛP is a project built around a simple belief: curiosity should be enough to get started. You shouldn’t need to know ten different websites or pay for a dozen subscriptions just to begin learning something new.</p>
+          <p>We’re bringing learning paths and useful resources into one place, and we hope to grow it with a community of people who love sharing what they know.</p>
           <a class="text-link" href="#search-section">Back to the search ↑</a>
         </div>
       </div>
