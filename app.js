@@ -92,6 +92,21 @@
   const results = document.querySelector("#roadmap-results");
   if (!form || !input || !results) return;
 
+  const STORAGE_KEY = "intmap-learning-state-v1";
+  const readState = () => {
+    try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || '{"completed":{},"bookmarks":[]}'); }
+    catch { return {completed:{},bookmarks:[]}; }
+  };
+  const saveState = (state) => {
+    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); }
+    catch { /* Keep the current session usable if storage is unavailable. */ }
+  };
+  const state = readState();
+  if (!state.completed) state.completed = {};
+  if (!Array.isArray(state.bookmarks)) state.bookmarks = [];
+  const completedFor = (title) => state.completed[title] || [];
+  const isBookmarked = (title) => state.bookmarks.includes(title);
+
   const escapeHtml = (value) => String(value).replace(/[&<>"']/g, (char) => ({
     "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#39;"
   })[char]);
@@ -125,17 +140,28 @@
       return;
     }
     results.innerHTML = '<div class="results-heading"><span>LEARNING PATHS</span><span>' + matches.length + ' topic' + (matches.length === 1 ? '' : 's') + ' found</span></div>' +
-      '<div class="roadmap-grid">' + matches.map(({item}, index) =>
-        '<button class="roadmap-card" type="button" data-roadmap="' + escapeHtml(item.title) + '">' +
-          '<span class="roadmap-meta">' + escapeHtml(item.category) + ' · ' + escapeHtml(item.level) + '</span>' +
+      '<div class="roadmap-grid">' + matches.map(({item}) =>
+        '<article class="roadmap-card">' +
+          '<div class="card-topline"><span class="roadmap-meta">' + escapeHtml(item.category) + ' · ' + escapeHtml(item.level) + '</span>' +
+          '<button class="bookmark-button ' + (isBookmarked(item.title) ? 'is-saved' : '') + '" type="button" data-bookmark="' + escapeHtml(item.title) + '" aria-label="' + (isBookmarked(item.title) ? 'Remove bookmark' : 'Bookmark roadmap') + '" aria-pressed="' + isBookmarked(item.title) + '">' + (isBookmarked(item.title) ? '★' : '☆') + '</button></div>' +
           '<strong>' + escapeHtml(item.title) + '</strong>' +
           '<span class="roadmap-description">' + escapeHtml(item.description) + '</span>' +
-          '<span class="roadmap-open">Explore roadmap <span aria-hidden="true">↗</span></span>' +
-        '</button>'
+          '<button class="roadmap-open" type="button" data-roadmap="' + escapeHtml(item.title) + '">Explore roadmap <span aria-hidden="true">↗</span></button>' +
+        '</article>'
       ).join("") + '</div><div id="roadmap-detail" class="roadmap-detail" aria-live="polite"></div>';
     results.hidden = false;
     results.querySelectorAll("[data-roadmap]").forEach((button) => {
       button.addEventListener("click", () => showRoadmap(button.dataset.roadmap));
+    });
+    results.querySelectorAll("[data-bookmark]").forEach((button) => {
+      button.addEventListener("click", () => {
+        const title = button.dataset.bookmark;
+        state.bookmarks = isBookmarked(title)
+          ? state.bookmarks.filter((saved) => saved !== title)
+          : [...state.bookmarks, title];
+        saveState(state);
+        renderResults(input.value);
+      });
     });
     if (matches.length === 1) showRoadmap(matches[0].item.title);
   };
@@ -144,13 +170,39 @@
     const item = roadmaps.find((roadmap) => roadmap.title === title);
     const detail = document.querySelector("#roadmap-detail");
     if (!item || !detail) return;
-    detail.innerHTML = '<div class="detail-top"><div><span class="roadmap-meta">YOUR LEARNING PATH</span><h2>' + escapeHtml(item.title) + '</h2><p>' + escapeHtml(item.description) + '</p></div><span class="step-count">' + item.steps.length + ' steps</span></div>' +
-      '<ol class="roadmap-steps">' + item.steps.map((step, index) =>
-        '<li><span class="step-number">' + String(index + 1).padStart(2, "0") + '</span><div class="step-content"><h3>' + escapeHtml(step.title) + '</h3><p>' + escapeHtml(step.detail) + '</p><div class="resource-links">' + step.resources.map((resource) =>
-          '<a href="' + escapeHtml(resource.url) + '" target="_blank" rel="noopener noreferrer">' + escapeHtml(resource.name) + ' ↗</a>'
-        ).join("") + '</div></div></li>'
-      ).join("") + '</ol><p class="roadmap-note">Resources are external links. Check each provider’s terms and availability.</p>';
-    detail.scrollIntoView({behavior:"smooth", block:"start"});
+    const done = completedFor(title);
+    const percent = Math.round((done.length / item.steps.length) * 100);
+    detail.innerHTML = '<div class="detail-top"><div><span class="roadmap-meta">YOUR LEARNING PATH</span><h2>' + escapeHtml(item.title) + '</h2><p>' + escapeHtml(item.description) + '</p></div>' +
+      '<button class="bookmark-detail ' + (isBookmarked(title) ? 'is-saved' : '') + '" type="button" data-detail-bookmark aria-pressed="' + isBookmarked(title) + '">' + (isBookmarked(title) ? '★ Saved' : '☆ Save roadmap') + '</button></div>' +
+      '<div class="progress-panel"><div class="progress-copy"><strong>Your progress</strong><span class="progress-count">' + done.length + ' of ' + item.steps.length + ' steps · ' + percent + '%</span></div>' +
+      '<div class="progress-track" role="progressbar" aria-label="Roadmap completion" aria-valuemin="0" aria-valuemax="100" aria-valuenow="' + percent + '"><span style="width:' + percent + '%"></span></div></div>' +
+      '<ol class="roadmap-steps">' + item.steps.map((step, index) => {
+        const checked = done.includes(index);
+        return '<li class="' + (checked ? 'step-done' : '') + '"><span class="step-number">' + String(index + 1).padStart(2, "0") + '</span><div class="step-content">' +
+          '<label class="step-check"><input type="checkbox" data-step="' + index + '"' + (checked ? ' checked' : '') + '><span class="custom-check" aria-hidden="true"></span><span class="step-title">' + escapeHtml(step.title) + '</span></label>' +
+          '<p>' + escapeHtml(step.detail) + '</p><div class="resource-links">' + step.resources.map((resource) =>
+            '<a href="' + escapeHtml(resource.url) + '" target="_blank" rel="noopener noreferrer">' + escapeHtml(resource.name) + ' ↗</a>'
+          ).join("") + '</div></div></li>';
+      }).join("") + '</ol><p class="roadmap-note">Your progress and saved roadmaps are stored only in this browser on this device. Resources are external links.</p>';
+
+    detail.querySelectorAll("[data-step]").forEach((checkbox) => {
+      checkbox.addEventListener("change", () => {
+        const index = Number(checkbox.dataset.step);
+        const current = completedFor(title);
+        state.completed[title] = checkbox.checked
+          ? [...new Set([...current, index])]
+          : current.filter((step) => step !== index);
+        saveState(state);
+        showRoadmap(title);
+      });
+    });
+    detail.querySelector("[data-detail-bookmark]").addEventListener("click", () => {
+      state.bookmarks = isBookmarked(title)
+        ? state.bookmarks.filter((saved) => saved !== title)
+        : [...state.bookmarks, title];
+      saveState(state);
+      showRoadmap(title);
+    });
   };
 
   form.addEventListener("submit", (event) => {
