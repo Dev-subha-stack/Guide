@@ -180,6 +180,37 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outlin
   }
   .mission-heading h2 { font-size: 34px; }
 }
+
+.results-section { width:min(1120px,calc(100% - 48px)); margin:0 auto; padding:0 0 76px; }
+.results-section[hidden] { display:none; }
+.results-empty { padding:24px 0; color:var(--text-secondary); font-size:14px; line-height:1.7; border-bottom:1px solid var(--border); }
+.results-empty strong { color:var(--text); }
+.results-empty p { margin:8px 0 0; }
+.results-heading { display:flex; justify-content:space-between; gap:12px; padding:18px 0; color:var(--text-muted); font-size:10px; letter-spacing:.12em; border-bottom:1px solid var(--border-strong); }
+.roadmap-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px; padding:18px 0 30px; }
+.roadmap-card { min-height:210px; display:flex; flex-direction:column; align-items:flex-start; text-align:left; gap:13px; padding:20px; color:var(--text); background:var(--surface); border:1px solid var(--border); border-radius:4px; cursor:pointer; }
+.roadmap-card:hover,.roadmap-card:focus-visible { background:var(--surface-hover); border-color:var(--border-strong); }
+.roadmap-meta { color:var(--accent); font-size:10px; letter-spacing:.1em; text-transform:uppercase; }
+.roadmap-card strong { font:500 25px/1.15 Georgia,"Times New Roman",serif; }
+.roadmap-description { color:var(--text-secondary); font-size:13px; line-height:1.65; }
+.roadmap-open { margin-top:auto; color:var(--text); font-size:12px; }
+.roadmap-open span { color:var(--accent); }
+.roadmap-detail { padding:28px 0 0; border-top:1px solid var(--border-strong); scroll-margin-top:100px; }
+.detail-top { display:flex; align-items:flex-start; justify-content:space-between; gap:20px; margin-bottom:20px; }
+.detail-top h2 { margin:10px 0; font:500 clamp(30px,4vw,42px)/1.15 Georgia,"Times New Roman",serif; }
+.detail-top p { margin:0; max-width:600px; color:var(--text-secondary); font-size:14px; line-height:1.7; }
+.step-count { flex:none; padding:8px 10px; border:1px solid var(--border); color:var(--text-secondary); font-size:11px; }
+.roadmap-steps { list-style:none; margin:26px 0 0; padding:0; border-top:1px solid var(--border); }
+.roadmap-steps li { display:grid; grid-template-columns:54px 1fr; gap:12px; padding:23px 0; border-bottom:1px solid var(--border); }
+.step-number { color:var(--text-muted); font:20px Georgia,"Times New Roman",serif; }
+.step-content h3 { margin:0 0 8px; font:500 20px Georgia,"Times New Roman",serif; }
+.step-content p { margin:0; color:var(--text-secondary); font-size:13px; line-height:1.7; }
+.resource-links { display:flex; flex-wrap:wrap; gap:9px 18px; margin-top:13px; }
+.resource-links a { color:var(--accent); font-size:12px; text-decoration:none; }
+.resource-links a:hover { color:var(--accent-hover); text-decoration:underline; }
+.roadmap-note { margin-top:18px; color:var(--text-muted); font-size:11px; line-height:1.6; }
+@media(max-width:760px) { .results-section{width:calc(100% - 40px);padding-bottom:58px}.roadmap-grid{grid-template-columns:1fr}.roadmap-card{min-height:175px}.detail-top{flex-direction:column}.roadmap-steps li{grid-template-columns:38px 1fr} }
+
 </style>
 </head>
 <body>
@@ -221,7 +252,7 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outlin
 
       <div class="search-area">
         <label class="search-label" for="topic-search">What do you want to learn?</label>
-        <form class="searching" role="search" action="#" onsubmit="return false">
+        <form class="searching" role="search">
           <input id="topic-search" type="search" class="searchbar" aria-label="Search learning resources" placeholder="Try vectors, matrices, or history">
           <button class="search-button" type="submit" aria-label="Search">→</button>
         </form>
@@ -229,6 +260,8 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outlin
       </div>
     </section>
 
+
+    <section class="results-section" id="roadmap-results" aria-live="polite" hidden></section>
 
     <section class="mission-section" aria-labelledby="mission-title">
       <div class="mission-heading">
@@ -261,6 +294,7 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outlin
     <a href="#home">Back to top ↑</a>
   </footer>
 
+  <script src="app.js" defer></script>
   <script>
     (() => {
       const toggle = document.querySelector(".menu-toggle");
