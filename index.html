@@ -211,6 +211,30 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outlin
 .roadmap-note { margin-top:18px; color:var(--text-muted); font-size:11px; line-height:1.6; }
 @media(max-width:760px) { .results-section{width:calc(100% - 40px);padding-bottom:58px}.roadmap-grid{grid-template-columns:1fr}.roadmap-card{min-height:175px}.detail-top{flex-direction:column}.roadmap-steps li{grid-template-columns:38px 1fr} }
 
+
+.card-topline { width:100%; display:flex; align-items:center; justify-content:space-between; gap:10px; }
+.roadmap-card { cursor:default; }
+.roadmap-open { border:0; padding:0; background:transparent; cursor:pointer; }
+.bookmark-button,.bookmark-detail { flex:none; border:1px solid var(--border-strong); border-radius:4px; padding:7px 10px; color:var(--text-secondary); background:transparent; cursor:pointer; font-size:12px; }
+.bookmark-button { font-size:20px; line-height:1; padding:3px 7px; border:0; }
+.bookmark-button:hover,.bookmark-detail:hover { color:var(--text); background:var(--surface-hover); }
+.is-saved { color:#FBBF24 !important; }
+.progress-panel { padding:18px; margin:24px 0; background:var(--surface); border:1px solid var(--border); border-radius:4px; }
+.progress-copy { display:flex; justify-content:space-between; gap:12px; margin-bottom:12px; font-size:12px; }
+.progress-copy strong { color:var(--text); font-weight:600; }
+.progress-count { color:var(--text-secondary); }
+.progress-track { height:7px; overflow:hidden; background:var(--input); border-radius:99px; }
+.progress-track span { display:block; height:100%; background:var(--accent); border-radius:99px; transition:width .2s ease; }
+.step-check { display:flex; align-items:center; gap:10px; cursor:pointer; width:fit-content; }
+.step-check input { position:absolute; opacity:0; width:1px; height:1px; }
+.custom-check { width:18px; height:18px; display:inline-grid; place-items:center; border:1px solid var(--border-strong); border-radius:4px; background:var(--input); flex:none; }
+.step-check input:checked + .custom-check { background:var(--accent); border-color:var(--accent); }
+.step-check input:checked + .custom-check::after { content:"✓"; color:white; font-size:13px; }
+.step-check input:focus-visible + .custom-check { outline:2px solid var(--accent); outline-offset:3px; }
+.step-title { font:500 20px Georgia,"Times New Roman",serif; }
+.step-done .step-title { color:var(--text-muted); text-decoration:line-through; }
+.step-done .step-number { color:var(--accent); }
+
 </style>
 </head>
 <body>
