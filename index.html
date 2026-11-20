@@ -1,82 +1,84 @@
-<!DOCTYPE html>
-
-<html>
-    <head>
-        <title>Int Map</title>
-        <link rel="icon" href="logo/favicon.png" type="image/png">
-        <link rel="stylesheet" href="landing_page.css">
-        <link rel="stylesheet" href="style.css">
- This is usually caused by another repository pushing to
-hint: the same ref. I
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
-
-    </head>
-     
-    <body>
-        <script src="test.js"></script>
-        
-        <div class="header"> 
-
-
-            <div class="logo-pic">
-                <img class="z" src="logo/logo-removebg-preview.png">
-            </div>
-
-
-            <div class="logo-text">
-                INT M&Lambda;P
-            </div>
-
-
-
-            <div class="menu-button">
-                <button class="hamburger"><img src="logo/Hamburger_icon.svg"></button>
-            </div>
-
-
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#250b0b">
+  <meta name="description" content="INT MΛP — Search less. Learn more. Find a clearer path through learning resources.">
+  <title>INT MΛP — Search Less. Learn More.</title>
+  <link rel="icon" href="logo/favicon.png" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="landing_page.css">
+</head>
+<body>
+  <header class="header">
+    <a class="brand" href="#" aria-label="INT MΛP home">
+      <img class="brand-mark" src="logo/logo-removebg-preview.png" alt="">
+      <span class="logo-text">INT M<span class="lambda">Λ</span>P</span>
+    </a>
+    <nav class="desktop-nav" aria-label="Main navigation">
+      <a href="#home">Home</a><a href="#about-section">About</a><a href="#search-section">Explore</a>
+    </nav>
+    <button class="hamburger" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="site-menu"><span></span><span></span><span></span></button>
+  </header>
+  <div class="menu-backdrop" hidden></div>
+  <nav class="side-menu" id="site-menu" aria-label="Mobile navigation" aria-hidden="true">
+    <div class="menu-top"><span class="menu-eyebrow">Navigation</span><button class="menu-close" type="button" aria-label="Close navigation">×</button></div>
+    <a href="#home"><span>01</span> Home</a><a href="#search-section"><span>02</span> Explore resources</a><a href="#about-section"><span>03</span> About us</a>
+    <p class="menu-foot">Search less. Learn more.</p>
+  </nav>
+  <main id="home">
+    <section class="hero" id="search-section">
+      <div class="hero-glow hero-glow-one"></div><div class="hero-glow hero-glow-two"></div>
+      <p class="eyebrow"><span></span> A clearer path to knowledge</p>
+      <h1>Find your way<br><em>to understanding.</em></h1>
+      <p class="hero-copy">The right resources, without the endless searching.</p>
+      <form class="searching" role="search" action="#" onsubmit="return false">
+        <span class="search-icon" aria-hidden="true">⌕</span>
+        <input type="search" class="searchbar" aria-label="Search learning resources" placeholder="Search a topic, subject or concept…">
+        <button class="search-button" type="submit" aria-label="Search">→</button>
+      </form>
+      <p class="search-hint">Try a topic like vectors, matrices or ionic equilibrium</p>
+      <div class="hero-bottom"><span>INT MΛP</span><span>LEARN WITH INTENTION&nbsp; ↗</span></div>
+    </section>
+    <section class="intro-strip"><span class="strip-line"></span><p>Less noise. More learning. A better route to the resources that matter.</p><span class="strip-line"></span></section>
+    <section class="about-section" id="about-section">
+      <div class="about-kicker">OUR STORY <span>— 01</span></div>
+      <div class="about-content">
+        <h2>Good learning<br>starts with a <em>good guide.</em></h2>
+        <div class="about-copy">
+          <p>Hey, this is us. INT MΛP is a project built to help learners find the right path and the right resources, without having to scavenge the internet.</p>
+          <p>It started as a hobby by two people who wanted to make learning a little less overwhelming. Today, we organise the resources; tomorrow, we hope to make this a community-driven space where everyone can contribute.</p>
+          <a class="text-link" href="#search-section">Start exploring <span>↗</span></a>
         </div>
-
-        <div class="search-region">
-            <div class="pillar-left">
-                <img class="pillar-img-left" src="logo/pillar.png">
-            </div>
-
-            <div class="searching">
-                <input type="text" class="searchbar"
-                placeholder="">
-                <button class="search-button">?</button>
-            </div>
-
-            <div class="pillar-right">
-                <img class="pillar-img-right" src="logo/pillar.png">
-            </div>
-        </div>
-
-        <div class="base">Search Less. Learn More</div>
-
-        <a class="about-link" href="#about-section">About</a>
-
-        <div class="line"></div>
-
-        <section id="about-section">
-        <div class="About">
-            <h1 class="about-heading">About</h1>
-            <p class="about-text">Hey this is us. And this is a website on giving the right path to a guy, so that he/she doesn't have to scavenge
-                the internet for the right resources 
-
-            </p>
-            <p class="about-text">
-                This is an intiative by two random guys sitting on their couch and doing this as a hobby.
-            </p>
-            <p class="about-text">
-                As of now we are the only one organizing the resoruces but in the future this is going to be more of a community driven website
-            </p>
-        </div>
-        </section>
-
-
-
-    </body>
+      </div>
+    </section>
+  </main>
+  <footer class="footer"><span>INT MΛP</span><span>SEARCH LESS. LEARN MORE.</span><a href="#home">BACK TO TOP ↑</a></footer>
+  <script src="search.js" defer></script>
+  <script>
+    (() => {
+      const trigger = document.querySelector(".hamburger");
+      const closeButton = document.querySelector(".menu-close");
+      const menu = document.querySelector(".side-menu");
+      const backdrop = document.querySelector(".menu-backdrop");
+      const links = menu.querySelectorAll("a");
+      const setMenu = (open) => {
+        trigger.setAttribute("aria-expanded", String(open));
+        trigger.setAttribute("aria-label", open ? "Close navigation" : "Open navigation");
+        menu.setAttribute("aria-hidden", String(!open));
+        menu.classList.toggle("is-open", open);
+        backdrop.hidden = !open;
+        document.body.classList.toggle("menu-open", open);
+      };
+      trigger.addEventListener("click", () => setMenu(trigger.getAttribute("aria-expanded") !== "true"));
+      closeButton.addEventListener("click", () => setMenu(false));
+      backdrop.addEventListener("click", () => setMenu(false));
+      links.forEach(link => link.addEventListener("click", () => setMenu(false)));
+      document.addEventListener("keydown", event => { if (event.key === "Escape") setMenu(false); });
+    })();
+  </script>
+</body>
 </html>
